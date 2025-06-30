@@ -238,7 +238,7 @@ with static_container:
         - It retains memory across interactions — giving it context and recall.
         - It autonomously decides **when** to use tools and **how** to respond.
         """)
-        st.image("skdiagram.png", caption="System Architecture Overview")
+        st.image("Screenshot 2025-06-30 135757.png", caption="System Architecture Overview")
 
     with st.expander("💡 Why Use Semantic Kernel?"):
         st.markdown("""
@@ -266,29 +266,7 @@ with static_container:
         No per-flow licensing. You control usage via LLM APIs.
         """)
         
-    with st.expander("🤖 CoPilot Integration"):
-        st.markdown("""
-        **Semantic Kernel** is an open-source SDK that enables developers to integrate advanced AI capabilities into their applications. **Microsoft Copilot Studio** is a low-code platform that allows users to build intelligent agents within the Microsoft 365 ecosystem.
-
-        By combining Semantic Kernel with Microsoft Copilot Studio, organisations can create intelligent agents that are both easy to develop and highly customizable, catering to complex business scenarios.
-
-        **Key Integration Points:**
-        - **Low-Code Meets Pro-Code:** Copilot Studio provides a low-code environment for building intelligent agents, while Semantic Kernel offers pro-code extensibility for advanced customization.
-        - **Copilot using SK Skills:** Copilot is able to call semantickernel using the custom agents functionality.  Bringing SK into Copilot workflows and allowing for quick deployment.
-        - **SK pulling from copilot:** Copilot Studio offers a default publishing channel that we can use to seamlessly connect as a plugin for SK.
-
-        **High level workflow:**
-        1. Microsoft Copilot Studio acts as the no-code/low-code frontend for creating, managing, and orchestrating AI skills.
-        2. Azure Bot Service serves as the main API entry point, transferring requests and responses between Copilot Studio and your custom API.
-        3. Semantic Kernel API (Host Application), built on Microsoft’s Semantic Kernel framework, resides in Azure Container Apps. It processes requests, performs intelligent computation (using generative AI via Azure OpenAI services), and returns responses back through Azure Bot Service.
-
-        - Copilot Studio initiates a request—such as querying complex data or triggering advanced processing.
-        - Azure Bot Service forwards these requests securely to a custom API running within Azure Container Apps.
-        - The Semantic Kernel-powered custom API executes tasks (e.g., sophisticated reasoning, generative AI interactions, integrations with your data sources), processes the information, and returns intelligent responses.
-        - Azure Bot Service coordinates responses back to Copilot Studio, providing users instant access to powerful, custom functionality.
-        """)
-        st.image("skcopilot.png", caption="Semantic Kernel and Microsoft Copilot Studio Integration Flow")
-        
+       
 
     st.markdown("---")
     st.caption("Built with 🧠 Semantic Kernel, 🗂️ Streamlit, and ⚖️ OpenAI")
