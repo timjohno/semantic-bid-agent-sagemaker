@@ -80,9 +80,9 @@ class AgentResponse:
 
 #################################################################
 #TODO: Adapt to use db after chat with Tania
-class ClimateRiskChecker:
-    @kernel_function(description="Retrieve the climate risk for an organisation from the Dun & Bradstreed Database.")
-    async def retrieve_risk_rating(
+class FailureScoreChecker:
+    @kernel_function(description="Retrieve the failure score and failure score commentary for an organisation from the Dun & Bradstreed Database.")
+    async def retrieve_failure_rating(
         self,
         claim_data: Annotated[dict, "Structured claim object containing organisation_name."]
     ) -> dict:
@@ -195,7 +195,7 @@ import json
 import numpy as np
 from typing import Annotated
 
-class ClaimSizeEstimator:
+class InsurancePremiumEstimator:
     def __init__(self):
         self.runtime = boto3.client("sagemaker-runtime")
         self.endpoint_name = "claim-amount-linear-v2-endpoint"
@@ -573,11 +573,11 @@ async def main(
         vector_memory_rag.add_document(claim_text)
 
     # --- Register plugins
-    kernel.add_plugin(ClimateRiskChecker(), plugin_name="ClimateRiskChecker")
+    kernel.add_plugin( FailureScoreChecker(), plugin_name="FailureScoreChecker")
     #kernel.add_plugin(DataCollector(kernel), plugin_name="collector")    
     kernel.add_plugin(vector_memory_rag, plugin_name="VectorMemoryRAG")
     kernel.add_plugin(RiskEvaluator(), plugin_name="RiskModel")
-    kernel.add_plugin(ClaimSizeEstimator(), plugin_name="ClaimEstimator")
+    kernel.add_plugin(InsurancePremiumEstimator(), plugin_name="PremiumEstimator")
     #kernel.add_plugin(ConsumerDutyChecker(kernel), plugin_name="ConsumerDuty")
     kernel.add_plugin(StructureClaimData(kernel), plugin_name="StructureClaimData")
 
