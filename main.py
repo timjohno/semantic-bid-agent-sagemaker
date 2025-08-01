@@ -562,7 +562,7 @@ async def main(
 ) -> AgentResponse:
     kernel = Kernel()
     kernel.add_service(BedrockChatCompletion(
-        model_id="eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        model_id="anthropic.claude-3-7-sonnet-20250219-v1:0",
     ))
 
     messages: List[AgentMessage] = []
