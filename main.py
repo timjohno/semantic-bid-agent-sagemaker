@@ -561,13 +561,13 @@ async def main(
     claim_text: Optional[str] = None
 ) -> AgentResponse:
     kernel = Kernel()
-    runtime_client=boto.client(
+    runtime_client=boto3.client(
         "bedrock-runtime",
         aws_access_key_id=st.secrets["AWS_ACCESS_KEY_ID"],
         aws_secret_access_key=st.secrets["AWS_SECRET_ACCESS_KEY"],
         region_name=st.secrets["AWS_REGION"]
     )
-    client=boto.client(
+    client=boto3.client(
         "bedrock",
         aws_access_key_id=st.secrets["AWS_ACCESS_KEY_ID"],
         aws_secret_access_key=st.secrets["AWS_SECRET_ACCESS_KEY"],
