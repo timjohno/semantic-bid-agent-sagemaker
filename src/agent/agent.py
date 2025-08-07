@@ -12,9 +12,7 @@ from semantic_kernel.connectors.ai.function_choice_behavior import FunctionChoic
 from src.kernel_functions.failure_score_checker import FailureScoreChecker
 from src.kernel_functions.risk_evaluator import RiskEvaluator
 from src.kernel_functions.insurance_premium_estimator import InsurancePremiumEstimator
-from src.kernel_functions.data_collector import DataCollector
 from src.kernel_functions.vector_memory_rag_plugin import VectorMemoryRAGPlugin
-from src.kernel_functions.consumer_duty_checker import ConsumerDutyChecker
 from src.kernel_functions.structure_claim_data import StructureClaimData
 
 AGENT_INSTRUCTIONS = """You are an expert insurance underwriting consultant. Your name, if asked, is 'IUA'.
