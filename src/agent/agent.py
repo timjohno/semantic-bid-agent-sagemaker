@@ -41,12 +41,14 @@ def make_agent(claim_text):
         "bedrock-runtime",
         aws_access_key_id=st.secrets["AWS_ACCESS_KEY_ID"],
         aws_secret_access_key=st.secrets["AWS_SECRET_ACCESS_KEY"],
+        aws_session_token=st.secrets["AWS_SESSION_TOKEN"],
         region_name=st.secrets["AWS_REGION"]
     )
     client=boto3.client(
         "bedrock",
         aws_access_key_id=st.secrets["AWS_ACCESS_KEY_ID"],
         aws_secret_access_key=st.secrets["AWS_SECRET_ACCESS_KEY"],
+        aws_session_token=st.secrets["AWS_SESSION_TOKEN"], 
         region_name=st.secrets["AWS_REGION"]
     )
     kernel.add_service(BedrockChatCompletion(
