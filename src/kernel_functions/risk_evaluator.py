@@ -6,7 +6,7 @@ from semantic_kernel.functions import kernel_function
 class RiskEvaluator:
     def __init__(self):
         self.runtime = boto3.client("sagemaker-runtime")
-        self.endpoint_name = "fraud-detection-xgb-v1-endpoint"
+        self.endpoint_name = "risk-evaluator-xgb-v1"
 
     @kernel_function(description="Determine the overall risk exposure rating of an organization based on our model to help support underwriters")
     async def assess_risk(
@@ -15,5 +15,5 @@ class RiskEvaluator:
     ) -> dict:
         return {
             "risk_score": 0.48,
-            "model_used": "fraud-detection-xgb-v1-endpoint"
+            "model_used": "risk-evaluator-xgb-v1"
         }
