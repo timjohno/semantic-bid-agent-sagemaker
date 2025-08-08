@@ -8,7 +8,7 @@ class FailureScoreChecker:
         self,
         claim_data: Annotated[dict, "Structured claim object containing organisation_name."]
     ) -> dict:
-        dynamodb = boto3.resource('dynamodb', region_name="eu-north-1")
+        dynamodb = boto3.resource('dynamodb', region_name="eu-west-2")
         dnb_table = dynamodb.Table("dnb_data")
         organisation_name = claim_data.get("organisation_name", "N/A")
         response = dnb_table.scan()
