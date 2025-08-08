@@ -39,14 +39,14 @@ def make_agent(claim_text):
         "bedrock-runtime",
         aws_access_key_id=st.secrets["AWS_ACCESS_KEY_ID"],
         aws_secret_access_key=st.secrets["AWS_SECRET_ACCESS_KEY"],
-        aws_session_token=st.secrets["AWS_SESSION_TOKEN"],
+        #aws_session_token=st.secrets["AWS_SESSION_TOKEN"],
         region_name=st.secrets["AWS_REGION"]
     )
     client=boto3.client(
         "bedrock",
         aws_access_key_id=st.secrets["AWS_ACCESS_KEY_ID"],
         aws_secret_access_key=st.secrets["AWS_SECRET_ACCESS_KEY"],
-        aws_session_token=st.secrets["AWS_SESSION_TOKEN"], 
+        #aws_session_token=st.secrets["AWS_SESSION_TOKEN"], 
         region_name=st.secrets["AWS_REGION"]
     )
     kernel.add_service(BedrockChatCompletion(
@@ -61,12 +61,10 @@ def make_agent(claim_text):
         vector_memory_rag.add_document(claim_text)
 
     # --- Register plugins
-    kernel.add_plugin( FailureScoreChecker(), plugin_name="FailureScoreChecker")
-    #kernel.add_plugin(DataCollector(kernel), plugin_name="collector")    
+    kernel.add_plugin( FailureScoreChecker(), plugin_name="FailureScoreChecker")   
     kernel.add_plugin(vector_memory_rag, plugin_name="VectorMemoryRAG")
     kernel.add_plugin(RiskEvaluator(), plugin_name="RiskModel")
     kernel.add_plugin(InsurancePremiumEstimator(), plugin_name="PremiumEstimator")
-    #kernel.add_plugin(ConsumerDutyChecker(kernel), plugin_name="ConsumerDuty")
     kernel.add_plugin(StructureClaimData(kernel), plugin_name="StructureClaimData")
 
     
