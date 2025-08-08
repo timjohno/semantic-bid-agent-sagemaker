@@ -17,7 +17,7 @@ def get_message_content(message) -> str:
     return str(message.content)
 
 # Page config
-st.set_page_config(page_title="Kainos Underiting Assistant", layout="wide")
+st.set_page_config(page_title="Kainos Underwiting Assistant", layout="wide")
 st.title("Kainos Agentic Underwriting Assistant")
 
 # Initialize session state variables
