@@ -5,11 +5,11 @@ from semantic_kernel.functions import kernel_function
 
 
 REGION_MODIFIERS = {
-    "gb": 1.2,
-    "usa": 1.1,
-    "eu": 1.3,
-    "asia": 1.4,
-    "africa": 1.5,
+    "gb": 2.2,
+    "usa": 2.1,
+    "eu": 2.3,
+    "asia": 3.0,
+    "africa": 4.5,
 }
 
 class MockInsurancePremiumEstimator:
@@ -23,7 +23,7 @@ class MockInsurancePremiumEstimator:
         claim_data: Annotated[dict, "Structured company data."]
     ) -> dict:
         coverage_amount = claim_data.get("coverage_amount", "")
-        coverage_amount = int(coverage_amount) // 1000 if coverage_amount else 0
+        coverage_amount = int(coverage_amount) // 100 if coverage_amount else 0
 
         region_of_operation = claim_data.get("region_of_operation", "").lower()
         modifier = REGION_MODIFIERS.get(region_of_operation, 1.5)
