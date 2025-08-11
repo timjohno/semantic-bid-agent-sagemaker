@@ -14,6 +14,7 @@ from src.kernel_functions.risk_evaluator import RiskEvaluator
 from src.kernel_functions.insurance_premium_estimator import InsurancePremiumEstimator
 from src.kernel_functions.vector_memory_rag_plugin import VectorMemoryRAGPlugin
 from src.kernel_functions.structure_claim_data import StructureClaimData
+from src.kernel_functions.mock_insurance_premium_estimator import MockInsurancePremiumEstimator
 
 AGENT_INSTRUCTIONS = """You are an expert insurance underwriting consultant. Your name, if asked, is 'IUA'.
  
@@ -39,14 +40,12 @@ def make_agent(claim_text):
         "bedrock-runtime",
         aws_access_key_id=st.secrets["AWS_ACCESS_KEY_ID"],
         aws_secret_access_key=st.secrets["AWS_SECRET_ACCESS_KEY"],
-        #aws_session_token=st.secrets["AWS_SESSION_TOKEN"],
         region_name=st.secrets["AWS_REGION"]
     )
     client=boto3.client(
         "bedrock",
         aws_access_key_id=st.secrets["AWS_ACCESS_KEY_ID"],
         aws_secret_access_key=st.secrets["AWS_SECRET_ACCESS_KEY"],
-        #aws_session_token=st.secrets["AWS_SESSION_TOKEN"], 
         region_name=st.secrets["AWS_REGION"]
     )
     kernel.add_service(BedrockChatCompletion(
@@ -64,7 +63,7 @@ def make_agent(claim_text):
     kernel.add_plugin( FailureScoreChecker(), plugin_name="FailureScoreChecker")   
     kernel.add_plugin(vector_memory_rag, plugin_name="VectorMemoryRAG")
     kernel.add_plugin(RiskEvaluator(), plugin_name="RiskModel")
-    kernel.add_plugin(InsurancePremiumEstimator(), plugin_name="PremiumEstimator")
+    kernel.add_plugin(MockInsurancePremiumEstimator(), plugin_name="PremiumEstimator")
     kernel.add_plugin(StructureClaimData(kernel), plugin_name="StructureClaimData")
 
     
